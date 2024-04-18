@@ -13,7 +13,6 @@ public class SinglyLinkedList {
         this.head = null;
     }
 
-    // Method to add an element to the end of the list (Create)
     public void append(int data) {
         Node newNode = new Node(data);
         if (head == null) {
@@ -29,7 +28,6 @@ public class SinglyLinkedList {
         current.next = newNode;
     }
 
-    // Method to display the content of the list (Read)
     public void display() {
         Node current = head;
         while (current != null) {
@@ -39,7 +37,6 @@ public class SinglyLinkedList {
         System.out.println();
     }
 
-    // Method to update a value by index (Update)
     public void update(int index, int newData) {
         if (index < 0 || index >= size()) {
             System.out.println("Invalid index");
@@ -54,15 +51,32 @@ public class SinglyLinkedList {
         current.data = newData;
     }
 
-    // Method to delete an element by index (Delete)
     public void delete(int index) {
+        if (index < 0 || index >= size()) {
+            System.out.println("Invalid Index");
+            return;
+        }
 
-        // write your solution here
+        if (index == 0) {
+            head = head.next;
+            return;
+        }
+
+        Node current = head;
+        for (int i = 0; i < index - 1; i++) {
+            current = current.next;
+        }
+
+        current.next = current.next.next;
     }
 
-    // Method to get the size of the list
     public int size() {
-        // write your solution here
-        return 0;
+        int count = 0;
+        Node current = head;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
     }
 }
